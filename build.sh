@@ -26,7 +26,7 @@ git log -1 --format=format:%ci%n | sed -e 's/ [-+].*$//;s/ /T/;s/^/D /' > manife
 echo $(git log -1 --format=format:%H) > manifest.uuid
 
 autoreconf
-./configure --prefix="${OUT_DIR}" --target=${CROSS_COMPILE} --host=${CROSS_COMPILE}
+./configure --prefix="${OUT_DIR}" --target=${CROSS_COMPILE} --host=${CROSS_COMPILE} --disable-tcl
 make
 make install
 ${CC} -shared -o "${OUT_DIR}/lib/libsqlite3.so" -fPIC shell.c sqlite3.c -lpthread -ldl
